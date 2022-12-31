@@ -1,6 +1,5 @@
 package com.udacity.vehicles.client.prices;
 
-import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,11 +15,9 @@ public class PriceClient {
 
     private final WebClient client;
 
-    private final ModelMapper modelMapper;
 
-    public PriceClient(WebClient pricing, ModelMapper modelMapper) {
+    public PriceClient(WebClient pricing) {
         this.client = pricing;
-        this.modelMapper=modelMapper;
     }
 
     // In a real-world application we'll want to add some resilience
@@ -39,9 +36,10 @@ public class PriceClient {
             Price price =  client
                     .get()
                     .uri(uriBuilder -> uriBuilder
-                            .path("/prices/")
-                            .queryParam("id", vehicleId)
-                            .build()
+                            .path("/prices/{id}")
+                             .build(vehicleId)
+                            //.queryParam("id", vehicleId)
+                            //.build()
                     )
                     .retrieve().bodyToMono(Price.class).block();
 
