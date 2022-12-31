@@ -1,4 +1,4 @@
-INSERT INTO PRICE (currency, price, id) VALUES ('USD', 4000, 1);
-INSERT INTO PRICE (currency, price, id)  VALUES ('USD', 5000, 2);
-INSERT INTO PRICE (currency, price, id)  VALUES ('USD', 6000, 3);
-INSERT INTO PRICE (currency, price, id)  VALUES ('USD', 7000, 4);
+INSERT INTO PRICE (id, currency, price) VALUES (1, 'USD', 4000.0);
+INSERT INTO PRICE (id, currency, price) VALUES (2, 'USD', 5000.0);
+INSERT INTO PRICE (id, currency, price) VALUES (3, 'USD', 6000.0);
+INSERT INTO PRICE (id, currency, price) VALUES (4, 'USD', 7000.0);
