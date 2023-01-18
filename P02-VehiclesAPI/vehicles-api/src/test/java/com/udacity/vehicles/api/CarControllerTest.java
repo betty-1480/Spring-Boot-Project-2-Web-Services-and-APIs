@@ -86,6 +86,18 @@ public class CarControllerTest {
                 .andExpect(status().isCreated());
     }
 
+    @Test
+    public void updateCar() throws Exception{
+        Car car = getCar();
+        car.setCondition(Condition.NEW);
+        mvc.perform(post(new URI("/cars"))
+                        .content(json.write(car).getJson())
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .accept(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isCreated());
+        verify(carService,times(1)).save(car);
+    }
+
     /**
      * Tests if the read operation appropriately returns a list of vehicles.
      * @throws Exception if the read operation of the vehicle list fails
@@ -137,9 +149,7 @@ public class CarControllerTest {
          */
 
         mvc.perform(delete("/cars/" + 1L)).andExpect(status().isNoContent());
-
         verify(carService, times(1)).delete(1L);
-
 
     }
 
